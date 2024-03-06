@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View live weather updates in your area with the Weather World app">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <title>Groovy Weather App</title>
+</head>
+<body>
+    <header class="headerBox">
+        <div id="currentWeather">
+            <p id="location"></p>
+            <p id="condition"><img id="icon" src="" alt="weather icon"></p>
+            <p id="temp"></p>
+        </div>
+        <div class="headerInner">
+            <h1>Groovy Weather</h1>
+            <h2 class="subheader">Dig on your local weather info baby</h2>
+        </div>
+        <div class="alignBox">
+            <div class="searchBox">
+                <div class="searchBoxInner">
+                    <form class="searchForm">
+                        <input class="searchInput" id="searchInput" type="text" placeholder="Location">
+                        <button type="submit" class="searchBtn">
+                            <!--Search icon borrowed from https://fontawesomeicons.com/svg/icons/search#ex-tab5-->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"> <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/> </svg>
+                        </button>
+                    </form>
+                </div>
+                <div class="dropAlign">
+                    <div class="dropdown">
+                        <div class="textBox">
+                            <ul id="savedCities"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<div class="pageContent">
+    <div class="weatherBox">
+        <div class="weatherBackground">
+            <div class="weatherInner">
+                <h3 class="weatherHead" id="day1"></h3>
+                <p> Temp: <span id="temp1"></span></p>
+                <img class="weatherIcon"  id="icon1" src="" alt="weather icon">
+                <p> humidity: <span id="hum1"></span></p>
+            </div>
+        </div>
+        <div class="weatherBackground">
+            <div class="weatherInner">
+                <h3 class="weatherHead" id="day2"></h3>
+                <p> Temp: <span id="temp2"></span></p>
+                <img class="weatherIcon" id="icon2" src="" alt="weather icon">
+                <p> humidity: <span id="hum2"></span></p>
+            </div>
+        </div>
+        <div class="weatherBackground">
+            <div class="weatherInner" id="dispTues">
+                <h3 class="weatherHead" id="day3"></h3>
+                <p> Temp: <span id="temp3"></span></p>
+                <img class="weatherIcon" id="icon3" src="" alt="weather icon">
+                <p> humidity: <span id="hum3"></span></p>
+            </div>
+        </div>
+        <div class="weatherBackground">
+            <div class="weatherInner" id="dispWeds">
+                <h3 class="weatherHead" id="day4"></h3>
+                <p> Temp: <span id="temp4"></span></p>
+                <img class="weatherIcon" id="icon4" src="" alt="weather icon">
+                <p> humidity: <span id="hum4"></span></p>
+            </div>
+        </div>
+        <div class="weatherBackground">
+            <div class="weatherInner" id="dispThur">
+                <h3 class="weatherHead" id="day5"></h3>
+                <p> Temp: <span id="temp5"></span></p>
+                <img class="weatherIcon" id="icon5" src="" alt="weather icon">
+                <p> humidity: <span id="hum5"></span></p>
+            </div>
+        </div>
+    </div>
+    <div id="advertBox">
+        <div class="advertInner" id="advert">
+            <img src="./assets/Ads/Ad_1.jpg" class="active">
+            <img src="./assets/Ads/Ad_2.jpg">
+            <img src="./assets/Ads/Ad_4.webp">
+            <img src="./assets/Ads/Ad_5.jpg">
+            <img src="./assets/Ads/Ad_6.jpg">
+            <img src="./assets/Ads/Ad_7.jpg">
+            <img src="./assets/Ads/Ad_8.png">
+            <img src="./assets/Ads/Ad_9.jpg">
+            <img src="./assets/Ads/Ad_10.jpg">
+            <img src="./assets/Ads/Ad_11.jpg">
+            <img src="./assets/Ads/Ad_12.webp">
+            <img src="./assets/Ads/Ad_13.jpg">
+            <img src="./assets/Ads/Ad_14.jpeg">
+        </div>
+        <div class="newsBox">
+            <h3 class="newsHeader">Trending news stories from this day in the 70s</h3>
+            <div class="newsDisp" id="news1">
+                <p id="title"></p>
+                <p id="date"></p>
+                <p id="content"></p>
+            </div>
+            <div class="newsDisp" id="news2"></div>
+            <div class="newsDisp" id="news3"></div>
+            <div class="newsDisp" id="news4"></div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="./assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"></script>
+
+</html>
