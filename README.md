@@ -26,5 +26,5 @@ Weather Groove App is your go-to web application for checking out the latest wea
 - OpenWeather API for fetching weather data.
 
 ## Links
-- Live Application
-- Repo
+- Live Application: https://lewissin.github.io/SkyQuest-Global-Weather/
+- Repo: https://github.com/LewisSin/SkyQuest-Global-Weather
