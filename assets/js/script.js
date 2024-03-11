@@ -1,210 +1,191 @@
 
-$(document).ready(function() {
+// Global variables
+var apiKey = "7e054b8b09dd564048c883ccd7c011b6";
+var searchFormEl = document.querySelector("#search-form");
+var cityInputEl = document.querySelector("#city-input");
+var searchHistoryEl = document.querySelector("#search-history");
+var currentWeatherEl = document.querySelector("#current-weather");
+var forecastEl = document.querySelector("#forecast");
 
-    //This function hides the dropdown menu then displays it when hovering over the search bar form
-    $(".dropdown").hide();
-
-    $(".searchBox").hover(function(){
-        $(".dropdown").fadeToggle(200);
-    })
-
-    //This function gets geolocation data from the browser and uses it to make a call for both the current weather data and location in the corner as well as the 5 day forecast information for your current location. 
-   function localWeather() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success);
-    } else {
-        $("#location").text("Location data not available. Search location to see weather results")
-    }
-
-    function success(position) {
-        var lat = position.coords.latitude;
-        var long = position.coords.longitude;
-        fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&units=imperial&appid=37049b04aa62927b70b6cb2d0bde88ff")
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                var temp = Math.round(data.main.temp);
-                var location = data.name;
-                var condition = data.weather[0].icon;
-                var conditionURL = "http://openweathermap.org/img/w/" + condition + ".png";
-                $("#temp").text(temp);
-                $("#location").text(location);
-                $("#icon").attr('src', conditionURL);
-        
-            });
-            fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + long + "&units=imperial&appid=37049b04aa62927b70b6cb2d0bde88ff")
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                var temp1 = data.list[1].main.temp;
-                var temp2 = data.list[9].main.temp;
-                var temp3 = data.list[17].main.temp;
-                var temp4 = data.list[25].main.temp;
-                var temp5 = data.list[33].main.temp;
-                $("#temp1").text(temp1);
-                $("#temp2").text(temp2);
-                $("#temp3").text(temp3);
-                $("#temp4").text(temp4);
-                $("#temp5").text(temp5);
-                var day1 = data.list[1].dt_txt;
-                var day2 = data.list[9].dt_txt;
-                var day3 = data.list[17].dt_txt;
-                var day4 = data.list[25].dt_txt;
-                var day5 = data.list[33].dt_txt;
-                $("#day1").text(day1);
-                $("#day2").text(day2);
-                $("#day3").text(day3);
-                $("#day4").text(day4);
-                $("#day5").text(day5);
-                var hum1 = data.list[1].main.humidity;
-                var hum2 = data.list[9].main.humidity;
-                var hum3 = data.list[17].main.humidity;
-                var hum4 = data.list[25].main.humidity;
-                var hum5 = data.list[33].main.humidity;
-                $("#hum1").text(hum1);
-                $("#hum2").text(hum2);
-                $("#hum3").text(hum3);
-                $("#hum4").text(hum4);
-                $("#hum5").text(hum5);
-                var icon1 = data.list[1].weather[0].icon;
-                var icon2 = data.list[9].weather[0].icon;
-                var icon3 = data.list[17].weather[0].icon;
-                var icon4 = data.list[25].weather[0].icon;
-                var icon5 = data.list[33].weather[0].icon;
-                var icon1URL = "http://openweathermap.org/img/w/" + icon1 + ".png";
-                var icon2URL = "http://openweathermap.org/img/w/" + icon2 + ".png";
-                var icon3URL = "http://openweathermap.org/img/w/" + icon3 + ".png";
-                var icon4URL = "http://openweathermap.org/img/w/" + icon4 + ".png";
-                var icon5URL = "http://openweathermap.org/img/w/" + icon5 + ".png";
-                $("#icon1").attr('src', icon1URL);
-                $("#icon2").attr('src', icon2URL);
-                $("#icon3").attr('src', icon3URL);
-                $("#icon4").attr('src', icon4URL);
-                $("#icon5").attr('src', icon5URL);
-                
-            });
-
-
-    };
-    };
-    localWeather();
-
-    
-    //This function takes the inputted city from the search bar form and uses that to make a call for the weather info for that city. Then it overwrites the currently displayed weather data. 
-    function searchWeather(cityName) {
-        event.preventDefault();
-        var cityName =$("#searchInput").val();
-        console.log(cityName);
-        fetch("https://api.openweathermap.org/data/2.5/forecast?q="+cityName+"&units=imperial&appid=37049b04aa62927b70b6cb2d0bde88ff")
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            var tempCur = data.list[1].main.temp;
-            var conditionCur = data.list[1].weather[0].icon;
-            var conditionURLCur = "http://openweathermap.org/img/w/" + conditionCur + ".png";
-            $("#temp").text(tempCur);
-            $("#location").text(cityName);
-            $("#icon").attr('src', conditionURLCur);
-            var temp1 = data.list[1].main.temp;
-            var temp2 = data.list[9].main.temp;
-            var temp3 = data.list[17].main.temp;
-            var temp4 = data.list[25].main.temp;
-            var temp5 = data.list[33].main.temp;
-            $("#temp1").text(temp1);
-            $("#temp2").text(temp2);
-            $("#temp3").text(temp3);
-            $("#temp4").text(temp4);
-            $("#temp5").text(temp5);
-            var day1 = data.list[1].dt_txt;
-            var day2 = data.list[9].dt_txt;
-            var day3 = data.list[17].dt_txt;
-            var day4 = data.list[25].dt_txt;
-            var day5 = data.list[33].dt_txt;
-            $("#day1").text(day1);
-            $("#day2").text(day2);
-            $("#day3").text(day3);
-            $("#day4").text(day4);
-            $("#day5").text(day5);
-            var hum1 = data.list[1].main.humidity;
-            var hum2 = data.list[9].main.humidity;
-            var hum3 = data.list[17].main.humidity;
-            var hum4 = data.list[25].main.humidity;
-            var hum5 = data.list[33].main.humidity;
-            $("#hum1").text(hum1);
-            $("#hum2").text(hum2);
-            $("#hum3").text(hum3);
-            $("#hum4").text(hum4);
-            $("#hum5").text(hum5);
-            var icon1 = data.list[1].weather[0].icon;
-            var icon2 = data.list[9].weather[0].icon;
-            var icon3 = data.list[17].weather[0].icon;
-            var icon4 = data.list[25].weather[0].icon;
-            var icon5 = data.list[33].weather[0].icon;
-            var icon1URL = "http://openweathermap.org/img/w/" + icon1 + ".png";
-            var icon2URL = "http://openweathermap.org/img/w/" + icon2 + ".png";
-            var icon3URL = "http://openweathermap.org/img/w/" + icon3 + ".png";
-            var icon4URL = "http://openweathermap.org/img/w/" + icon4 + ".png";
-            var icon5URL = "http://openweathermap.org/img/w/" + icon5 + ".png";
-            $("#icon1").attr('src', icon1URL);
-            $("#icon2").attr('src', icon2URL);
-            $("#icon3").attr('src', icon3URL);
-            $("#icon4").attr('src', icon4URL);
-            $("#icon5").attr('src', icon5URL);
-            
-        });
-        
-    };
-    
-    //This function creates a new list item for each search result saved. I ran out of time to figure out local storage and couldnt get the elements to be inputed into the form on click. I believe its due to the onload function? 
-    var citiesArr = [];
-    function saveCities(data) {
-        event.preventDefault();
-        citiesArr.push($("#searchInput").val());
-        $("#savedCities").text("");
-        console.log(citiesArr);
-        
-        $.each(citiesArr, function(index, value) {
-            $('#savedCities').append("<li class='citiesList'  onclick='addtotextbox("+index+")'>" + value + '</li>');
-            localStorage.setItem(index, value);
-        })
-        function addtotextbox(id) {
-            $("#searchInput").val(citiesArr[id]);
-        }
-    };
-    
-    $("form").on("submit", saveCities);
-    $("form").on("submit", searchWeather);
-
-
-    //for future implementation. Historic news articles from the 70s. Will use dayjs to get month and year to attach to fetch call
-    function HistoricNews() {
-        fetch("https://api.nytimes.com/svc/archive/v1/2019/1.json?api-key=yfIuGK0PqAnJff81ejU5wgAcRsP2tEoa/1973/7.json")
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            
-            
-        });
-    };
-    HistoricNews();
-
-    //advert rotation. Once it switches through each advert there is no ad displayed. Will fix this with an array and for loop in the future. 
-    function AdRotation(){
-       var active = $(".advertInner .active");
-       var next = ($(".advertInner .active").next().length > 0) ? 
-       $(".advertInner .active").next() : $("m.advertInner img:first");
-       active.removeClass("active");
-       next.addClass("active");
-    }
-
-    setInterval(AdRotation, 60000);
-    
-    
+// Event listener for the search form submission
+searchFormEl.addEventListener("submit", function (event) {
+  event.preventDefault();
+  var cityName = cityInputEl.value.trim().toUpperCase();
+  if (cityName !== "") {
+    searchWeather(cityName);
+  }
 });
+
+// Function to search for weather data
+function searchWeather(cityName) {
+  // Current weather API URL
+  var currentWeatherApiUrl =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    cityName +
+    "&appid=" +
+    apiKey +
+    "&units=metric";
+
+  // Fetch current weather data
+  fetch(currentWeatherApiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        // Display current weather data
+        displayCurrentWeather(data);
+
+        // Save city name to search history
+        saveSearchHistory(cityName);
+      });
+    } else {
+      alert("Error: " + response.statusText);
+    }
+  });
+
+  // 5-day forecast API URL
+  var forecastApiUrl =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    cityName +
+    "&appid=" +
+    apiKey +
+    "&units=metric";
+
+  // Fetch 5-day forecast data
+  fetch(forecastApiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        // Display 5-day forecast data
+        displayForecast(data);
+      });
+    } else {
+      alert("Error: " + response.statusText);
+    }
+  });
+}
+
+// Function to display current weather data
+function displayCurrentWeather(data) {
+  var city = data.name;
+  var date = new Date(data.dt * 1000).toLocaleDateString();
+  var iconUrl =
+    "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+  var temp = data.main.temp;
+  var humidity = data.main.humidity;
+  var windSpeed = data.wind.speed;
+
+  var html =
+    "<h1>" +
+    city +
+    " (" +
+    date +
+    ") " +
+    "<img src='" +
+    iconUrl +
+    "' alt='" +
+    data.weather[0].description +
+    "'></h1>" +
+    "<p>Temperature: " +
+    temp +
+    " &deg;C</p>" +
+    "<p>Humidity: " +
+    humidity +
+    "%</p>" +
+    "<p>Wind Speed: " +
+    windSpeed +
+    " m/s</p>";
+
+  currentWeatherEl.innerHTML = html;
+  currentWeatherEl.classList.add("current-weather");
+}
+
+// Function to display 5-day forecast data
+function displayForecast(data) {
+  var forecastItems = data.list.filter(function (item) {
+    return item.dt_txt.includes("12:00:00");
+  });
+
+  var html = "<h2>5-Day Forecast:</h2>";
+
+  forecastItems.forEach(function (item) {
+    var date = new Date(item.dt * 1000).toLocaleDateString();
+    var iconUrl =
+      "https://openweathermap.org/img/w/" + item.weather[0].icon + ".png";
+    var temp = item.main.temp;
+    var windSpeed = item.wind.speed;
+
+    html +=
+      "<div>" +
+      "<h5>" +
+      date +
+      "</h5>" +
+      "<img src='" +
+      iconUrl +
+      "' alt='" +
+      item.weather[0].description +
+      "'>" +
+      "<p>Temp: " +
+      temp +
+      " &deg;C</p>" +
+      "<p>Humidity: " +
+      item.main.humidity +
+      "%</p>" +
+      "<p>Wind Speed: " +
+      windSpeed +
+      " m/s</p>" +
+      "</div>";
+  });
+
+  forecastEl.innerHTML = html;
+  forecastEl.classList.add("forecast");
+}
+
+// funtion to save search history to local storage
+function saveSearchHistory(cityName) {
+  var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+  searchHistory.push(cityName);
+  // push seachHistory array to a new array and remove duplicates from the new array and then set the new array to local storage
+  var searchHistoryNoDuplicates = [];
+  searchHistory.forEach(function (cityName) {
+    if (!searchHistoryNoDuplicates.includes(cityName)) {
+      searchHistoryNoDuplicates.push(cityName);
+    }
+  });
+  
+  localStorage.setItem("searchHistory", JSON.stringify(searchHistoryNoDuplicates)
+  );
+
+  displaySearchHistory();
+}
+
+// funtion that creates buttons for each city in the search history array and displays them on the page in the search-history div
+function displaySearchHistory() {
+  var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+  var html = "<h2>Search History</h2>";
+  searchHistory.forEach(function (cityName) {
+    html += "<button class=button>" + cityName + "</button>";
+  });
+
+  searchHistoryEl.innerHTML = html;
+}
+
+// funtion to display the weather and forecast for the city button that was clicked in the search history div on the page
+function displayWeatherFromHistory(event) {
+  var cityName = event.target.textContent;
+  searchWeather(cityName);
+}
+
+// event listener for the search history div on the page
+searchHistoryEl.addEventListener("click", displayWeatherFromHistory);
+
+// display search history on page load
+displaySearchHistory();
+
+// funtion to clear the search history from local storage and the page
+function clearSearchHistory() {
+  localStorage.removeItem("searchHistory");
+  displaySearchHistory();
+}
+
+// event listener for the clear search history button
+document
+  .querySelector("#clear-history")
+  .addEventListener("click", clearSearchHistory);

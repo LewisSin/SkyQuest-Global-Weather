@@ -1,276 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
-:root {
-    --lightbrown: #c37943;
-    --darkbrown: #40322b;
-    --orange: #dd811c;
-    --tan: #e3cdb7;
-    --cream: #d5a36a;
-    --blue: #91c3b3;
-    --yellow: #f8c560;
-}
-
-body {
-    background-color: var(--tan);
-}
-
-h1 {
-    font-family: 'Caprasimo';
-    margin: 0%;
-    font-size: 52px;
-    text-shadow: 0 0 10px var(--darkbrown);
-    color: var(--orange);
-    -webkit-text-stroke: 1px var(--darkbrown);
-    transform: rotate(-3deg);
-}
-
-span {
-    margin: 0;
-}
-
-.headerBox {
+.panel {
     display: flex;
-    justify-items: start;
-    align-items: center;
-    height: 125px;
-    width: 100%;
-    background-color: var(--lightbrown);
-    border: groove var(--darkbrown);
-    border-width: 5px 5px 10px 5px;
-}
-
-.headerInner {
-    padding-left: 200px;
-}
-
-.subheader {
-    font-family: 'Caprasimo';
-    font-size: 18px;
-    margin: 0%;
-    text-align: center;
-    color: var(--darkbrown); 
-}
-
-.alignBox {
-   justify-content: center;
-   align-items: center;
-   display: flex;
-   height: 50px;
-   width: 300px;
-   margin-left: 200px;
-   margin-top: 35px;
-}
-
-.searchBox {
-    background-color: white;
-    border-radius: 4px 4px 4px 4px;
-    position: relative;
-    height: 44px;
-    width: 250px;
-    box-shadow: 0 0 9px var(--darkbrown);
-}
-
-.searchBoxInner {
+    flex-flow: column nowrap;
+    align-content: center;
+    justify-content: center;
+    height: 100px;
+    background: #f5f5dc; /* Changed color code for beige */
+    border: 4px solid #000; /* Using hex code for black */
+    margin: 20px;
+    font-size: 3rem; /* Using rem for scalability */
+    font-weight: normal; /* Changed from 500 to normal */
+  }
+  
+  .main-wrapper {
     display: flex;
-    justify-items: center;
-    align-items: center;
-    height: 100%;
-    padding: 0 0 0 12px;
-}
-
-.searchForm {
-    margin-right: 0;
-    width: 100%;
-    height: 100%;
-}
-.searchInput {
-    background: none;
+    padding: 20px;
+  }
+  
+  .query-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 30%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .results-wrapper {
+    flex: 70%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .history-log {
+    margin-top: 20px;
+  }
+  
+  form {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  button[type="submit"] {
+    background: #4caf50;
     border: none;
-    outline: none;
-    width: 70%;
-}
-
-.searchBtn {
-    background: none;
-    border: none;
-    border-left: 1px solid black;
-    width: 20%;
-    height: 100%;
-    margin: 0;
-    margin-left: 15px;
-}
-
-.dropAlign {
-    padding: 0px 3px 2px 3px;
-}
-
-.dropdown {
-    justify-items: center;
-    align-items: center;
-    margin: 0;
-    background-color: white;
-    border-radius: 15px;
-    padding-top: 2px;
-    box-shadow: 0 7px 9px var(--darkbrown);
-}
-
-.textBox {
-    padding: 2px 6px 2px 6px;
-    margin: 2px 2px 2px 2px;
-}
-
-.searchBtn:hover {
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 1rem;
     cursor: pointer;
-}
-
-.pageContent {
+    margin-top: 5px;
+  }
+  
+  .today-weather {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e0ffff; /* Lighter cyan */
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  .upcoming-weather {
+    display: flex;
+    justify-content: space-between;
+    background: #7fffd4; /* Adjusted color */
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  .weather-detail {
     display: flex;
     flex-direction: row;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    max-width: 1920px;
-    margin: 0 24px 24px;
-}
-
-.weatherBox {
-    display: flex;
-    flex-wrap: wrap;
-    width: 40%;
-    height: 60%;
-    justify-content: center;
-    margin-right: 0;
-}
-
-.weatherBackground {
-    display: flex;
-    flex: 1 0 200px;
-    vertical-align: auto;
-    float: left;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 50px 30px 30px 0px;
-    height: 250px;
-    max-width: 200px;
-    background-color: var(--cream);
-    box-shadow: 0 0 9px var(--darkbrown);
-}
-
-.weatherHead {
-    margin: 0;
-}
-
-.weatherInner {
-    font-family: 'caprasimo';
-    font-size: 20px;
-    color: var(--orange);
-    -webkit-text-stroke: .15mm var(--darkbrown);
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    width: 94%;
-    height: 94%;
-    background-color: var(--yellow);
-}
-
-.weatherIcon {
-    margin: 0;
-    width: 50px;
-    height: 50px;
-}
-
-.newsBox {
-    display: flex;
-    align-content: center;
-    text-align: center;
-    flex-wrap: wrap;
-    border: 0;
-    width: 400px;
-    min-width: 400px;
-    height: 100%;
-    margin: 0;
-    margin-left:252px;
-    padding: 0;
-}
-
-.newsHeader {
-    display: flex;
-    font-family: 'caprasimo';
-    transform: rotate(-3deg);
-    text-shadow: 0 0 9px var(--darkbrown);
-    font-size: 32px;
-    -webkit-text-stroke: .2mm var(--darkbrown);
-    color: var(--orange);
-    margin-left: 10px;
-}
-
-.newsDisp {
-    display: flex;
-    justify-content: center;
-    flex: 100%;
-    box-shadow: 0 0 6px var(--darkbrown);
-    margin: 10px 10px 10px 10px;
-    background-color: var(--cream);
-    height: 200px;
-}
-
-.cityItem {
-    list-style: none;
-    font-family: 'caprasimo';
-}
-
-#location {
-    margin: 0;
-    font-family: 'caprasimo';
-    font-size: 24px;
-    color: var(--orange);
-    -webkit-text-stroke: .4mm var(--darkbrown);
-    text-shadow: 0 0 9px var(--darkbrown);
-}
-
-#condition {
-    margin: 0;
-    margin-left: 40px;
-}
-
-#temp {
-    margin: 0;
-    font-family: 'caprasimo';
-    font-size: 24px;
-    margin-left: 50px;
-    color: var(--orange);
-    -webkit-text-stroke: .4mm var(--darkbrown);
-    text-shadow: 0 0 9px var(--darkbrown);
-}
-
-#currentWeather {
-    position: absolute;
-    left: 30px;
-    width: 200px;
-    height: 120px;
-}
-
-#advertBox1 {
-    display: flex;
-    width: 400px;
-    height: 100px;
-    background-color: var(--cream);
-    margin-left: auto;
-    margin-right: 0;
-    box-shadow: 0 0 9px var(--darkbrown);
-
-}
-
-.advertInner img{
-    position: absolute;
-    display: none;
-    width: 224px;
-    height: 312px;
-    top: 200px;
-    box-shadow: 0 0 9px var(--darkbrown);
-}
-
-.advertInner img.active{
-    display: block;
-}
+    align-items: flex-start; /* Changed from left */
+  }
+  
